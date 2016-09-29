@@ -16,6 +16,8 @@
 		D38B92661D9CBDD5003E934F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D38B92641D9CBDD5003E934F /* LaunchScreen.storyboard */; };
 		D38B92711D9CBDD5003E934F /* ListProfilesUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D38B92701D9CBDD5003E934F /* ListProfilesUITests.swift */; };
 		D38B92871D9CC493003E934F /* Profile.swift in Sources */ = {isa = PBXBuildFile; fileRef = D38B92861D9CC493003E934F /* Profile.swift */; };
+		D38B928D1D9CCD03003E934F /* ProfileCellTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D38B928C1D9CCD03003E934F /* ProfileCellTableViewCell.swift */; };
+		D38B928F1D9CCE6F003E934F /* ProfileTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D38B928E1D9CCE6F003E934F /* ProfileTableViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -46,6 +48,8 @@
 		D38B92721D9CBDD5003E934F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D38B927B1D9CC3D1003E934F /* ListProfiles-bridging-header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "ListProfiles-bridging-header.h"; sourceTree = "<group>"; };
 		D38B92861D9CC493003E934F /* Profile.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Profile.swift; sourceTree = "<group>"; };
+		D38B928C1D9CCD03003E934F /* ProfileCellTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileCellTableViewCell.swift; sourceTree = "<group>"; };
+		D38B928E1D9CCE6F003E934F /* ProfileTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileTableViewController.swift; sourceTree = "<group>"; };
 		D4C304EE721C396E3533B6F6 /* Pods-ListProfiles.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ListProfiles.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ListProfiles/Pods-ListProfiles.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -160,6 +164,8 @@
 			children = (
 				D38B925D1D9CBDD5003E934F /* ViewController.swift */,
 				D38B925F1D9CBDD5003E934F /* Main.storyboard */,
+				D38B928C1D9CCD03003E934F /* ProfileCellTableViewCell.swift */,
+				D38B928E1D9CCE6F003E934F /* ProfileTableViewController.swift */,
 			);
 			name = ListProfiles;
 			sourceTree = "<group>";
@@ -382,6 +388,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				D38B925E1D9CBDD5003E934F /* ViewController.swift in Sources */,
+				D38B928F1D9CCE6F003E934F /* ProfileTableViewController.swift in Sources */,
+				D38B928D1D9CCD03003E934F /* ProfileCellTableViewCell.swift in Sources */,
 				D38B92871D9CC493003E934F /* Profile.swift in Sources */,
 				D38B925C1D9CBDD5003E934F /* AppDelegate.swift in Sources */,
 			);
