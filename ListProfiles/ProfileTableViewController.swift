@@ -7,6 +7,10 @@
 //
 
 import UIKit
+import MBProgressHUD
+import Alamofire
+import AlamofireImage
+import SwiftyJSON
 
 class ProfileTableViewController: UITableViewController {
     
@@ -14,6 +18,8 @@ class ProfileTableViewController: UITableViewController {
     var profiles          = [Profile]()
     var searchingProfiles = [Profile]()
     let searchController  = UISearchController(searchResultsController: nil)
+    
+    var emptyView : EmptyView?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -24,7 +30,7 @@ class ProfileTableViewController: UITableViewController {
         tableView.tableHeaderView                         = searchController.searchBar
         
         createProfiles()
-        tableView.reloadData()
+        tableView.tableFooterView = UIView(frame: CGRectZero)
     }
 
     override func didReceiveMemoryWarning() {
@@ -47,8 +53,7 @@ class ProfileTableViewController: UITableViewController {
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("profileCell", forIndexPath: indexPath) as! ProfileCellTableViewCell
-        
-        
+        cell.imageProfile.image = UIImage()
         if searchController.active && searchController.searchBar.text != ""{
             cell.profile = searchingProfiles[indexPath.row]
         }else{
@@ -58,15 +63,58 @@ class ProfileTableViewController: UITableViewController {
         return cell
     }
     
+    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        performSegueWithIdentifier("ShowDetailSegue", sender: self)
+    }
+    
     func createProfiles(){
-        for index in 0...10{
-            let profile       = Profile()
-            profile.age       = index
-            profile.city      = "Curitiba"
-            profile.firstName = "Lazaro neto \(index)"
-            profile.imageUrl  = "http://adeem.de/affinitas/iStock_000022079835Medium_595.jpg"
-            
-            profiles.append(profile)
+        MBProgressHUD.showHUDAddedTo(self.view, animated: true)
+        Manager.sharedInstance.request(.GET, "http://adeem.de/affinitas/profiles.php?action=list").responseJSON { (response) in
+            MBProgressHUD.hideHUDForView(self.view, animated: true)
+            if let statusCode = response.response?.statusCode{
+                switch statusCode{
+                case 200...204:
+                    print(response.result.value)
+                    if let value = response.result.value{
+                        let json = JSON(value)
+                        if json["success"].boolValue{
+                            self.parteJsonTolist(json)
+                        }else{
+                            self.addEmptyView()
+                        }
+                    }
+                default:
+                    print(response)
+                    self.addEmptyView()
+                }
+            }
+        }
+    }
+    
+    func parteJsonTolist(jsonList : JSON){
+        if let arrayDict = jsonList["data"].arrayObject{
+            for dict in arrayDict{
+                let jsonDict = JSON(dict)
+                profiles.append(Profile(from: jsonDict))
+            }
+        }
+        
+        tableView.reloadData()
+    }
+    
+    func retryGetList(){
+        emptyView?.removeFromSuperview()
+        createProfiles()
+    }
+    
+    func addEmptyView(){
+        if let emptyView = NSBundle.mainBundle().loadNibNamed("EmptyView", owner: EmptyView(), options: nil).first as? EmptyView{
+            self.emptyView                       = emptyView
+            emptyView.frame                      = tableView.frame
+            emptyView.btRetry.layer.cornerRadius = emptyView.btRetry.frame.size.height / 2
+//            emptyView.btRetry.clipsToBounds      = true
+            emptyView.btRetry.addTarget(self, action: #selector(retryGetList), forControlEvents: .TouchUpInside)
+            tableView.addSubview(emptyView)
         }
     }
 }

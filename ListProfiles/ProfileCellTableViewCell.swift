@@ -9,6 +9,7 @@
 import UIKit
 import Alamofire
 import AlamofireImage
+import SDWebImage
 
 class ProfileCellTableViewCell: UITableViewCell {
 
@@ -16,6 +17,8 @@ class ProfileCellTableViewCell: UITableViewCell {
     @IBOutlet weak var labelFirstName   : UILabel!
     @IBOutlet weak var labelAge         : UILabel!
     @IBOutlet weak var labelCity        : UILabel!
+    
+    var imageDownloaded  : UIImage?
     
     var profile : Profile?{
         didSet{
@@ -47,24 +50,20 @@ class ProfileCellTableViewCell: UITableViewCell {
             labelCity.text = city
         }
         
-        if let imageUrl = profile?.imageUrl{
-            //TODO - Create a service to load the image
-            print(imageUrl)
-            Manager.sharedInstance.request(.GET, imageUrl).responseImage(completionHandler: { (response) in
-                debugPrint(response)
-                
-                print(response.request)
-                print(response.response)
-                debugPrint(response.result)
-                
-                if let image = response.result.value {
-                    print("image downloaded: \(image)")
-                    self.imageProfile.image              = image
-                    self.imageProfile.layer.cornerRadius = self.imageProfile.frame.size.width / 2
-                    self.imageProfile.clipsToBounds      = true
-                }
-            })
-        }
+        imageProfile.image = UIImage()
+        
+//        if let imageDownloaded = imageDownloaded{
+//            imageProfile.image = imageDownloaded
+//?        }else{
+            if let imageUrl = profile?.imageUrl{
+                //TODO - Create a service to load the image
+                print(imageUrl)
+//                imageProfile.sd_setImageWithURL(NSURL(string: imageUrl)!)
+                imageProfile.af_setImageWithURL(NSURL(string: imageUrl)!)
+                imageProfile.layer.cornerRadius = imageProfile.frame.size.width / 2
+                imageProfile.clipsToBounds = true
+            }
+//        }
     }
 
 }

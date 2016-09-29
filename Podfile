@@ -7,11 +7,11 @@ target 'ListProfiles' do
 
     # Pods for ListProfiles
     pod 'IQKeyboardManager', 	'~> 3.2.4'
-    pod 'AFDateHelper', 		'~> 3.4.2'
     pod 'Alamofire',            '~> 3.4.2'
     pod 'AlamofireImage',       '~> 2.4.1'
     pod 'SwiftyJSON',           '~> 2.3.2'
     pod 'MBProgressHUD',        '~> 1.0.0'
+    pod 'SDWebImage',           '~>3.8'
 
   target 'ListProfilesUITests' do
     inherit! :search_paths
