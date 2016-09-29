@@ -19,7 +19,8 @@ class ProfileTableViewController: UITableViewController {
     var searchingProfiles = [Profile]()
     let searchController  = UISearchController(searchResultsController: nil)
     
-    var emptyView : EmptyView?
+    var emptyView       : EmptyView?
+    var profileSelected : Profile?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -64,12 +65,15 @@ class ProfileTableViewController: UITableViewController {
     }
     
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        profileSelected = profiles[indexPath.row]
         performSegueWithIdentifier("ShowDetailSegue", sender: self)
     }
     
     func createProfiles(){
         MBProgressHUD.showHUDAddedTo(self.view, animated: true)
+        view.userInteractionEnabled = false
         Manager.sharedInstance.request(.GET, "http://adeem.de/affinitas/profiles.php?action=list").responseJSON { (response) in
+            self.view.userInteractionEnabled = true
             MBProgressHUD.hideHUDForView(self.view, animated: true)
             if let statusCode = response.response?.statusCode{
                 switch statusCode{
@@ -87,6 +91,8 @@ class ProfileTableViewController: UITableViewController {
                     print(response)
                     self.addEmptyView()
                 }
+            }else{
+                self.addEmptyView()
             }
         }
     }
@@ -99,7 +105,8 @@ class ProfileTableViewController: UITableViewController {
             }
         }
         
-        tableView.reloadData()
+//        tableView.reloadData()
+        animateTable()
     }
     
     func retryGetList(){
@@ -115,6 +122,40 @@ class ProfileTableViewController: UITableViewController {
 //            emptyView.btRetry.clipsToBounds      = true
             emptyView.btRetry.addTarget(self, action: #selector(retryGetList), forControlEvents: .TouchUpInside)
             tableView.addSubview(emptyView)
+        }
+    }
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if segue.identifier == "ShowDetailSegue"{
+            if let detailColletion = segue.destinationViewController as? DetailProfileCollectionViewController{
+                if let profileSelected = profileSelected{
+                    detailColletion.profile = profileSelected
+                }
+            }
+        }
+    }
+    
+    func animateTable() {
+        self.tableView.reloadData()
+        
+        let cells = tableView.visibleCells;
+        let tableHeight: CGFloat = tableView.bounds.size.height
+        
+        for i in cells {
+            let cell: UITableViewCell = i as UITableViewCell
+            cell.transform = CGAffineTransformMakeTranslation(0, tableHeight)
+        }
+        
+        var index = 0
+        
+        for a in cells {
+            let cell: UITableViewCell = a as UITableViewCell
+            
+            UIView.animateWithDuration(1.5, delay: 0.05 * Double(index), usingSpringWithDamping: 0.8, initialSpringVelocity: 0, options: .CurveEaseIn, animations: {
+                cell.transform = CGAffineTransformMakeTranslation(0, 0);
+                }, completion: nil)
+            
+            index += 1
         }
     }
 }
