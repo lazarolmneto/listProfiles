@@ -15,6 +15,7 @@
 		D38B92631D9CBDD5003E934F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D38B92621D9CBDD5003E934F /* Assets.xcassets */; };
 		D38B92661D9CBDD5003E934F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D38B92641D9CBDD5003E934F /* LaunchScreen.storyboard */; };
 		D38B92711D9CBDD5003E934F /* ListProfilesUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D38B92701D9CBDD5003E934F /* ListProfilesUITests.swift */; };
+		D38B92871D9CC493003E934F /* Profile.swift in Sources */ = {isa = PBXBuildFile; fileRef = D38B92861D9CC493003E934F /* Profile.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -43,6 +44,8 @@
 		D38B926C1D9CBDD5003E934F /* ListProfilesUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ListProfilesUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		D38B92701D9CBDD5003E934F /* ListProfilesUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListProfilesUITests.swift; sourceTree = "<group>"; };
 		D38B92721D9CBDD5003E934F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		D38B927B1D9CC3D1003E934F /* ListProfiles-bridging-header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "ListProfiles-bridging-header.h"; sourceTree = "<group>"; };
+		D38B92861D9CC493003E934F /* Profile.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Profile.swift; sourceTree = "<group>"; };
 		D4C304EE721C396E3533B6F6 /* Pods-ListProfiles.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ListProfiles.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ListProfiles/Pods-ListProfiles.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -100,12 +103,10 @@
 		D38B925A1D9CBDD5003E934F /* ListProfiles */ = {
 			isa = PBXGroup;
 			children = (
-				D38B925B1D9CBDD5003E934F /* AppDelegate.swift */,
-				D38B925D1D9CBDD5003E934F /* ViewController.swift */,
-				D38B925F1D9CBDD5003E934F /* Main.storyboard */,
-				D38B92621D9CBDD5003E934F /* Assets.xcassets */,
-				D38B92641D9CBDD5003E934F /* LaunchScreen.storyboard */,
-				D38B92671D9CBDD5003E934F /* Info.plist */,
+				D38B92811D9CC41B003E934F /* App Logic */,
+				D38B927F1D9CC3FD003E934F /* Modules */,
+				D38B927D1D9CC3EC003E934F /* Resources */,
+				D38B927C1D9CC3DE003E934F /* Application */,
 			);
 			path = ListProfiles;
 			sourceTree = "<group>";
@@ -117,6 +118,74 @@
 				D38B92721D9CBDD5003E934F /* Info.plist */,
 			);
 			path = ListProfilesUITests;
+			sourceTree = "<group>";
+		};
+		D38B927C1D9CC3DE003E934F /* Application */ = {
+			isa = PBXGroup;
+			children = (
+				D38B92641D9CBDD5003E934F /* LaunchScreen.storyboard */,
+				D38B925B1D9CBDD5003E934F /* AppDelegate.swift */,
+				D38B92671D9CBDD5003E934F /* Info.plist */,
+				D38B927B1D9CC3D1003E934F /* ListProfiles-bridging-header.h */,
+			);
+			name = Application;
+			sourceTree = "<group>";
+		};
+		D38B927D1D9CC3EC003E934F /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				D38B927E1D9CC3F2003E934F /* Images */,
+			);
+			name = Resources;
+			sourceTree = "<group>";
+		};
+		D38B927E1D9CC3F2003E934F /* Images */ = {
+			isa = PBXGroup;
+			children = (
+				D38B92621D9CBDD5003E934F /* Assets.xcassets */,
+			);
+			name = Images;
+			sourceTree = "<group>";
+		};
+		D38B927F1D9CC3FD003E934F /* Modules */ = {
+			isa = PBXGroup;
+			children = (
+				D38B92801D9CC407003E934F /* ListProfiles */,
+			);
+			name = Modules;
+			sourceTree = "<group>";
+		};
+		D38B92801D9CC407003E934F /* ListProfiles */ = {
+			isa = PBXGroup;
+			children = (
+				D38B925D1D9CBDD5003E934F /* ViewController.swift */,
+				D38B925F1D9CBDD5003E934F /* Main.storyboard */,
+			);
+			name = ListProfiles;
+			sourceTree = "<group>";
+		};
+		D38B92811D9CC41B003E934F /* App Logic */ = {
+			isa = PBXGroup;
+			children = (
+				D38B92831D9CC428003E934F /* Service */,
+				D38B92821D9CC424003E934F /* Model */,
+			);
+			name = "App Logic";
+			sourceTree = "<group>";
+		};
+		D38B92821D9CC424003E934F /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				D38B92861D9CC493003E934F /* Profile.swift */,
+			);
+			name = Model;
+			sourceTree = "<group>";
+		};
+		D38B92831D9CC428003E934F /* Service */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Service;
 			sourceTree = "<group>";
 		};
 		DD38ADE11F21EBE10CB5C61A /* Frameworks */ = {
@@ -313,6 +382,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				D38B925E1D9CBDD5003E934F /* ViewController.swift in Sources */,
+				D38B92871D9CC493003E934F /* Profile.swift in Sources */,
 				D38B925C1D9CBDD5003E934F /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
