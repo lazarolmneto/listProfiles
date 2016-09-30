@@ -162,14 +162,17 @@
                                                 <constraint firstAttribute="height" constant="1" id="I6q-Ny-9dG"/>
                                             </constraints>
                                         </view>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1Oh-y1-HdE">
-                                            <rect key="frame" x="492" y="11" width="38" height="18"/>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1Oh-y1-HdE">
+                                            <rect key="frame" x="75" y="11" width="455" height="18"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                             <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Postcode" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pty-ND-Nkt">
                                             <rect key="frame" x="0.0" y="11" width="65" height="18"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" constant="65" id="21x-ZZ-2Or"/>
+                                            </constraints>
                                             <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                             <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                             <nil key="highlightedColor"/>
@@ -184,6 +187,7 @@
                                         <constraint firstItem="pty-ND-Nkt" firstAttribute="leading" secondItem="H8u-aw-hEH" secondAttribute="leading" id="cZz-Sq-Hqj"/>
                                         <constraint firstAttribute="trailing" secondItem="eng-MG-jYq" secondAttribute="trailing" id="ejt-nX-ae1"/>
                                         <constraint firstItem="eng-MG-jYq" firstAttribute="leading" secondItem="H8u-aw-hEH" secondAttribute="leading" id="geA-6V-9ML"/>
+                                        <constraint firstItem="1Oh-y1-HdE" firstAttribute="leading" secondItem="pty-ND-Nkt" secondAttribute="trailing" constant="10" id="rzh-no-buk"/>
                                         <constraint firstAttribute="trailing" secondItem="1Oh-y1-HdE" secondAttribute="trailing" constant="40" id="tAi-8j-2NP"/>
                                     </constraints>
                                 </view>
@@ -197,14 +201,17 @@
                                                 <constraint firstAttribute="height" constant="1" id="9zK-0d-IJ6"/>
                                             </constraints>
                                         </view>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vfU-y3-wn4">
-                                            <rect key="frame" x="492" y="11" width="38" height="18"/>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vfU-y3-wn4">
+                                            <rect key="frame" x="36" y="11" width="494" height="18"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                             <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Job" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KJI-IH-jTS">
                                             <rect key="frame" x="0.0" y="11" width="26" height="18"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" constant="26" id="vgQ-LC-qsn"/>
+                                            </constraints>
                                             <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                             <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                             <nil key="highlightedColor"/>
@@ -215,6 +222,7 @@
                                         <constraint firstAttribute="height" constant="40" id="1pc-ws-q8D"/>
                                         <constraint firstItem="vfU-y3-wn4" firstAttribute="centerY" secondItem="OoM-Lx-vwD" secondAttribute="centerY" id="3iU-RN-D1j"/>
                                         <constraint firstItem="W3P-Lf-AIV" firstAttribute="leading" secondItem="OoM-Lx-vwD" secondAttribute="leading" id="4k5-Xb-u8T"/>
+                                        <constraint firstItem="vfU-y3-wn4" firstAttribute="leading" secondItem="KJI-IH-jTS" secondAttribute="trailing" constant="10" id="7kd-BF-csP"/>
                                         <constraint firstAttribute="trailing" secondItem="W3P-Lf-AIV" secondAttribute="trailing" id="LCP-l1-JA4"/>
                                         <constraint firstItem="KJI-IH-jTS" firstAttribute="centerY" secondItem="OoM-Lx-vwD" secondAttribute="centerY" id="iHV-dA-1Az"/>
                                         <constraint firstAttribute="bottom" secondItem="W3P-Lf-AIV" secondAttribute="bottom" id="wsY-lO-OdG"/>
@@ -364,10 +372,10 @@
             </objects>
             <point key="canvasLocation" x="2794" y="316"/>
         </scene>
-        <!--View Controller-->
+        <!--Picture View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="ListProfiles" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="BYZ-38-t0r" customClass="PictureViewController" customModule="ListProfiles" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>

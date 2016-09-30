@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+class PictureViewController: UIViewController {
 
     @IBOutlet weak var scrollView: UIScrollView!
     
@@ -55,7 +55,7 @@ class ViewController: UIViewController {
     }
 }
 
-extension ViewController : UIScrollViewDelegate{
+extension PictureViewController : UIScrollViewDelegate{
     func viewForZoomingInScrollView(scrollView: UIScrollView) -> UIView? {
         return self.picture;
     }

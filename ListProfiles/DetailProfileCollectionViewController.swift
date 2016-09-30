@@ -86,31 +86,19 @@ class DetailProfileCollectionViewController: UICollectionViewController {
         if let uuid = profile.uuid{
             view.userInteractionEnabled = false
             MBProgressHUD.showHUDAddedTo(self.view, animated: true)
-            let url = "http://adeem.de/affinitas/profiles.php?action=detail&id=\(uuid)"
-            Manager.sharedInstance.request(.GET, url).responseJSON(completionHandler: { (response) in
+            
+            sharedWebservice.getDetailsFromProfile(uuid, result: { (value, success, error) in
                 MBProgressHUD.hideHUDForView(self.view, animated: true)
                 self.view.userInteractionEnabled = true
-            
-                if let statusCode = response.response?.statusCode{
-                    //Verify status from service
-                    //if success fill the elemtens
-                    //if not, fill the elements with the pre loaded data, from the list, and show alert that could not be possible access all information.
-                    switch statusCode{
-                    case 200...204:
-                        if let value = response.result.value{
-                            let json = JSON(value)
-                            if json["success"].boolValue{
-                                self.pardeJsonProfile(json)
-                            }else{
-                                self.alertError()
-                            }
-                        }
-                    default:
-                        print(response)
-                        self.alertError()
+                if success{
+                    if let profile = value as? Profile{
+                        self.profile = profile
+                        self.collectionView?.reloadData()
                     }
                 }else{
-                    self.alertError()
+                    if let dictUser = error?.userInfo, let detail = dictUser["detail"] as? String{
+                        self.alertError(detail)
+                    }
                 }
             })
         }
@@ -118,7 +106,7 @@ class DetailProfileCollectionViewController: UICollectionViewController {
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == "ShowImageSegue"{
-            if let viewImage = segue.destinationViewController as? ViewController{
+            if let viewImage = segue.destinationViewController as? PictureViewController{
                 if let imageUrlSelected = imageUrlSelected{
                     viewImage.imageUrl = imageUrlSelected
                 }
@@ -130,13 +118,13 @@ class DetailProfileCollectionViewController: UICollectionViewController {
     func pardeJsonProfile(json : JSON){
         if let dict = json["data"].dictionaryObject{
             let jsonProfile = JSON(dict)
-            self.profile = Profile(from: jsonProfile)
+            self.profile = Profile(withJSON: jsonProfile)
             collectionView?.reloadData()
         }
     }
     
-    func alertError(){
-        let alert  = UIAlertController(title: "List", message: "Could not load all details from this profile, try again later", preferredStyle: .Alert)
+    func alertError(messageError : String){
+        let alert  = UIAlertController(title: "List", message: messageError, preferredStyle: .Alert)
         let action = UIAlertAction(title: "Ok", style: .Default, handler: nil)
         alert.addAction(action)
         

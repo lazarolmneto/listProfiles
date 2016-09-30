@@ -65,13 +65,6 @@ class HeaderDetailCollectionReusableView: UICollectionReusableView {
             if let url = NSURL(string: imageURL){
                 imageProfile.af_setImageWithURL(url)
                 imageBackGround.af_setImageWithURL(url)
-//                let blurEffect = UIBlurEffect(style: UIBlurEffectStyle.Light)
-//                let blurEffectView = UIVisualEffectView(effect: blurEffect)
-//                blurEffectView.frame = imageBackGround.bounds
-//                
-//                blurEffectView.autoresizingMask = [.FlexibleWidth, .FlexibleHeight] // for supporting device rotation
-//                imageBackGround.addSubview(blurEffectView)
-
             }
         }
 

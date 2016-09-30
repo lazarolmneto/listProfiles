@@ -78,59 +78,68 @@ class ProfileTableViewController: UITableViewController {
     func createProfiles(){
         MBProgressHUD.showHUDAddedTo(self.view, animated: true)
         view.userInteractionEnabled = false
-        Manager.sharedInstance.request(.GET, "http://adeem.de/affinitas/profiles.php?action=list").responseJSON { (response) in
-            self.view.userInteractionEnabled = true
+        
+        sharedWebservice.getProfiles { (value, success, error) in
             MBProgressHUD.hideHUDForView(self.view, animated: true)
-            if let statusCode = response.response?.statusCode{
-                //Verify with status is success
-                //if success load tableView
-                //if not, add empty view
-                switch statusCode{
-                case 200...204:
-                    print(response.result.value)
-                    if let value = response.result.value{
-                        let json = JSON(value)
-                        if json["success"].boolValue{
-                            self.parteJsonTolist(json)
-                        }else{
-                            self.addEmptyView()
-                        }
-                    }
-                default:
-                    print(response)
-                    self.addEmptyView()
+            self.view.userInteractionEnabled = true
+            if success{
+                if let value = value as? [Profile]{
+                    self.profiles = value
+                    self.animateTable()
                 }
             }else{
-                self.addEmptyView()
+                if let dictUser = error?.userInfo, let detail = dictUser["detail"] as? String{
+                    self.addEmptyView(detail)
+                }
             }
         }
     }
     
     func parteJsonTolist(jsonList : JSON){
-        if let arrayDict = jsonList["data"].arrayObject{
-            for dict in arrayDict{
-                let jsonDict = JSON(dict)
-                profiles.append(Profile(from: jsonDict))
-            }
-        }
+        
+        self.profiles = jsonList["data"].arrayValue.map { Profile(withJSON: $0) }
         
         //Call animation of tableView
         animateTable()
     }
     
     func retryGetList(){
-        emptyView?.removeFromSuperview()
-        createProfiles()
+        //Try get the profiles again, display a activity indicator indicating the "progress"
+        emptyView?.activityIndicator.hidden = false
+        emptyView?.activityIndicator.startAnimating()
+        emptyView?.btRetry.setTitle("", forState: .Normal)
+        emptyView?.btRetry.enabled = false
+        
+        sharedWebservice.getProfiles { (value, success, error) in
+            self.emptyView?.activityIndicator.stopAnimating()
+            self.emptyView?.activityIndicator.hidden = true
+            self.emptyView?.btRetry.enabled          = true
+            if success{
+                if let value = value as? [Profile]{
+                    self.emptyView?.removeFromSuperview()
+                    self.profiles = value
+                    self.animateTable()
+                }
+            }else{
+                if let dictUser = error?.userInfo, let detail = dictUser["detail"] as? String{
+                    self.addEmptyView(detail)
+                }
+            }
+        }
     }
     
     //Function to add a Error View, with the possibility that the user try load data again
-    func addEmptyView(){
+    func addEmptyView(messageError : String){
+        emptyView?.removeFromSuperview()
+        
         if let emptyView = NSBundle.mainBundle().loadNibNamed("EmptyView", owner: EmptyView(), options: nil).first as? EmptyView{
             self.emptyView                       = emptyView
             emptyView.frame                      = tableView.frame
             emptyView.btRetry.layer.cornerRadius = emptyView.btRetry.frame.size.height / 2
-//            emptyView.btRetry.clipsToBounds      = true
+            emptyView.labelDescError.text        = messageError
+            emptyView.activityIndicator.hidden   = true
             emptyView.btRetry.addTarget(self, action: #selector(retryGetList), forControlEvents: .TouchUpInside)
+            
             tableView.addSubview(emptyView)
         }
     }

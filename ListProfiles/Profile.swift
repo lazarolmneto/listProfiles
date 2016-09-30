@@ -24,7 +24,7 @@ class Profile: NSObject {
     
     override init() {}
     
-    init(from json: JSON) {
+    init(withJSON json: JSON) {
         uuid         = json["id"].stringValue
         imageUrl     = json["image_url"].stringValue
         firstName    = json["firstname"].stringValue

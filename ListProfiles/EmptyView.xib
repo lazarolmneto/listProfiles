@@ -11,8 +11,8 @@
             <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Try again in next time." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RR2-fH-wMd">
-                    <rect key="frame" x="221" y="290" width="159" height="20"/>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="252" verticalHuggingPriority="252" horizontalCompressionResistancePriority="751" verticalCompressionResistancePriority="751" text="Try again in next time." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RR2-fH-wMd">
+                    <rect key="frame" x="20" y="290" width="560" height="20"/>
                     <fontDescription key="fontDescription" type="system" pointSize="16"/>
                     <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                     <nil key="highlightedColor"/>
@@ -36,19 +36,26 @@
                     <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <state key="normal" title="Retry"/>
                 </button>
+                <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="white" translatesAutoresizingMaskIntoConstraints="NO" id="ff9-IY-ghZ">
+                    <rect key="frame" x="290" y="339" width="20" height="20"/>
+                </activityIndicatorView>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
+                <constraint firstItem="RR2-fH-wMd" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="20" id="2Cj-gc-zNl"/>
+                <constraint firstItem="ff9-IY-ghZ" firstAttribute="centerX" secondItem="ZCJ-Ta-YuP" secondAttribute="centerX" id="A16-Zd-W9J"/>
                 <constraint firstItem="RR2-fH-wMd" firstAttribute="top" secondItem="rgt-aa-Xsg" secondAttribute="bottom" constant="16" id="ACq-0C-w1K"/>
                 <constraint firstItem="t2v-WF-XiN" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="MhV-yv-6TY"/>
+                <constraint firstAttribute="trailing" secondItem="RR2-fH-wMd" secondAttribute="trailing" constant="20" id="REc-zN-zYM"/>
                 <constraint firstItem="RR2-fH-wMd" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="SaK-pP-f94"/>
-                <constraint firstItem="RR2-fH-wMd" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="aKw-OE-a8f"/>
                 <constraint firstItem="rgt-aa-Xsg" firstAttribute="top" secondItem="t2v-WF-XiN" secondAttribute="bottom" constant="22" id="cW9-bD-rJ2"/>
                 <constraint firstItem="ZCJ-Ta-YuP" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="l0N-ya-QCG"/>
                 <constraint firstItem="rgt-aa-Xsg" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="naU-vl-zQb"/>
                 <constraint firstItem="ZCJ-Ta-YuP" firstAttribute="top" secondItem="RR2-fH-wMd" secondAttribute="bottom" constant="15" id="uOO-qV-24q"/>
+                <constraint firstItem="ff9-IY-ghZ" firstAttribute="centerY" secondItem="ZCJ-Ta-YuP" secondAttribute="centerY" id="uPz-zi-i3R"/>
             </constraints>
             <connections>
+                <outlet property="activityIndicator" destination="ff9-IY-ghZ" id="guA-e8-Gql"/>
                 <outlet property="btRetry" destination="ZCJ-Ta-YuP" id="eRC-DH-gXD"/>
                 <outlet property="labelDescError" destination="RR2-fH-wMd" id="i3p-Kd-tG1"/>
             </connections>
