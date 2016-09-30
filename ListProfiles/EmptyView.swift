@@ -10,8 +10,8 @@ import UIKit
 
 class EmptyView: UIView {
 
-    @IBOutlet weak var btRetry: UIButton!
-    @IBOutlet weak var labelDescError: UILabel!
+    @IBOutlet weak var btRetry          : UIButton!
+    @IBOutlet weak var labelDescError   : UILabel!
     /*
     // Only override drawRect: if you perform custom drawing.
     // An empty implementation adversely affects performance during animation.

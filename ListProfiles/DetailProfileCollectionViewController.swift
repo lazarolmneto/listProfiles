@@ -17,6 +17,8 @@ class DetailProfileCollectionViewController: UICollectionViewController {
 
     var profile = Profile()
     
+    var imageUrlSelected : String?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -73,6 +75,11 @@ class DetailProfileCollectionViewController: UICollectionViewController {
         }
     }
     
+    override func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
+        imageUrlSelected = profile.imageUrl
+        performSegueWithIdentifier("ShowImageSegue", sender: self)
+    }
+    
     
     //Function to load the data from a selected profile
     func loadDetails(){
@@ -106,6 +113,16 @@ class DetailProfileCollectionViewController: UICollectionViewController {
                     self.alertError()
                 }
             })
+        }
+    }
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if segue.identifier == "ShowImageSegue"{
+            if let viewImage = segue.destinationViewController as? ViewController{
+                if let imageUrlSelected = imageUrlSelected{
+                    viewImage.imageUrl = imageUrlSelected
+                }
+            }
         }
     }
     
