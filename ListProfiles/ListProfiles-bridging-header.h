@@ -9,5 +9,6 @@
 #ifndef ListProfiles_bridging_header_h
 #define ListProfiles_bridging_header_h
 
+#import <MBProgressHUD/MBProgressHUD.h>
 
 #endif /* ListProfiles_bridging_header_h */

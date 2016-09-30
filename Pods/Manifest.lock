@@ -1,5 +1,4 @@
 PODS:
-  - AFDateHelper (3.4.2)
   - Alamofire (3.4.2)
   - AlamofireImage (2.4.1):
     - Alamofire (~> 3.3)
@@ -8,7 +7,6 @@ PODS:
   - SwiftyJSON (2.3.2)
 
 DEPENDENCIES:
-  - AFDateHelper (~> 3.4.2)
   - Alamofire (~> 3.4.2)
   - AlamofireImage (~> 2.4.1)
   - IQKeyboardManager (~> 3.2.4)
@@ -16,13 +14,12 @@ DEPENDENCIES:
   - SwiftyJSON (~> 2.3.2)
 
 SPEC CHECKSUMS:
-  AFDateHelper: aecee6bb264d6531795649f4ebac47783d2bab74
   Alamofire: 6aa33201d20d069e1598891cf928883ff1888c7a
   AlamofireImage: 3ccf3347d9ea24580dc11fb892770a0be6a29826
   IQKeyboardManager: 555b1231fefafb21b19278d7cca72986a27b748b
   MBProgressHUD: 4890f671c94e8a0f3cf959aa731e9de2f036d71a
   SwiftyJSON: 04ccea08915aa0109039157c7974cf0298da292a
 
-PODFILE CHECKSUM: ff5b1afb581699a389bff31bdbfc39181e75f597
+PODFILE CHECKSUM: b5c937b935f2bbb884cf53fd1810f20b6056036c
 
 COCOAPODS: 1.0.1
