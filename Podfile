@@ -11,7 +11,6 @@ target 'ListProfiles' do
     pod 'AlamofireImage',       '~> 2.4.1'
     pod 'SwiftyJSON',           '~> 2.3.2'
     pod 'MBProgressHUD',        '~> 1.0.0'
-    pod 'SDWebImage',           '~>3.8'
 
   target 'ListProfilesUITests' do
     inherit! :search_paths

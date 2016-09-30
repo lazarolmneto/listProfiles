@@ -20,6 +20,7 @@ class DetailProfileCollectionViewController: UICollectionViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        //Add flow layout to organize images below the header
         let flow = collectionView!.collectionViewLayout as! UICollectionViewFlowLayout
         flow.sectionInset = UIEdgeInsetsMake(0, 0, 0, 0)
         let width = UIScreen.mainScreen().bounds.size.width - 6
@@ -72,6 +73,8 @@ class DetailProfileCollectionViewController: UICollectionViewController {
         }
     }
     
+    
+    //Function to load the data from a selected profile
     func loadDetails(){
         if let uuid = profile.uuid{
             view.userInteractionEnabled = false
@@ -82,6 +85,9 @@ class DetailProfileCollectionViewController: UICollectionViewController {
                 self.view.userInteractionEnabled = true
             
                 if let statusCode = response.response?.statusCode{
+                    //Verify status from service
+                    //if success fill the elemtens
+                    //if not, fill the elements with the pre loaded data, from the list, and show alert that could not be possible access all information.
                     switch statusCode{
                     case 200...204:
                         if let value = response.result.value{
@@ -89,23 +95,34 @@ class DetailProfileCollectionViewController: UICollectionViewController {
                             if json["success"].boolValue{
                                 self.pardeJsonProfile(json)
                             }else{
-//                                self.addEmptyView()
+                                self.alertError()
                             }
                         }
                     default:
                         print(response)
-//                        self.addEmptyView()
+                        self.alertError()
                     }
+                }else{
+                    self.alertError()
                 }
             })
         }
     }
     
+    //Funtion to parse the JSON to the profile.
     func pardeJsonProfile(json : JSON){
         if let dict = json["data"].dictionaryObject{
             let jsonProfile = JSON(dict)
             self.profile = Profile(from: jsonProfile)
             collectionView?.reloadData()
         }
+    }
+    
+    func alertError(){
+        let alert  = UIAlertController(title: "List", message: "Could not load all details from this profile, try again later", preferredStyle: .Alert)
+        let action = UIAlertAction(title: "Ok", style: .Default, handler: nil)
+        alert.addAction(action)
+        
+        presentViewController(alert, animated: true, completion: nil)
     }
 }

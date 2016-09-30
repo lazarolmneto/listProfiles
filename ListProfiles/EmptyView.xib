@@ -23,8 +23,8 @@
                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="emptyList" translatesAutoresizingMaskIntoConstraints="NO" id="t2v-WF-XiN">
-                    <rect key="frame" x="285" y="198" width="30" height="30"/>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="emptyList" translatesAutoresizingMaskIntoConstraints="NO" id="t2v-WF-XiN">
+                    <rect key="frame" x="257" y="110" width="86" height="118"/>
                 </imageView>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZCJ-Ta-YuP">
                     <rect key="frame" x="180" y="325" width="240" height="48"/>
@@ -55,6 +55,6 @@
         </view>
     </objects>
     <resources>
-        <image name="emptyList" width="30" height="30"/>
+        <image name="emptyList" width="86" height="118"/>
     </resources>
 </document>

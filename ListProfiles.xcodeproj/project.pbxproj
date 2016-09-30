@@ -83,6 +83,46 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		62D6ABA41D9E9B18003FE54D /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				62D6ABA71D9EA867003FE54D /* Cell */,
+				D38B925D1D9CBDD5003E934F /* ViewController.swift */,
+				6214919C1D9D9F3200F24D41 /* ProfileTableViewController.swift */,
+				627C20C71D9D89E30005D2FE /* EmptyView.swift */,
+				6214919E1D9DA71400F24D41 /* DetailProfileCollectionViewController.swift */,
+			);
+			name = Controller;
+			sourceTree = "<group>";
+		};
+		62D6ABA51D9E9B1D003FE54D /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				D38B92861D9CC493003E934F /* Profile.swift */,
+			);
+			name = Model;
+			sourceTree = "<group>";
+		};
+		62D6ABA61D9E9B27003FE54D /* View */ = {
+			isa = PBXGroup;
+			children = (
+				D38B925F1D9CBDD5003E934F /* Main.storyboard */,
+				627C20C51D9D89C00005D2FE /* EmptyView.xib */,
+				D38B92641D9CBDD5003E934F /* LaunchScreen.storyboard */,
+			);
+			name = View;
+			sourceTree = "<group>";
+		};
+		62D6ABA71D9EA867003FE54D /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				D38B928C1D9CCD03003E934F /* ProfileCellTableViewCell.swift */,
+				621491A01D9DC00800F24D41 /* HeaderDetailCollectionReusableView.swift */,
+				621491A21D9DD07C00F24D41 /* ImageProfileCollectionViewCell.swift */,
+			);
+			name = Cell;
+			sourceTree = "<group>";
+		};
 		9B1FD9BC8E325A11EAD381D0 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
@@ -117,8 +157,9 @@
 		D38B925A1D9CBDD5003E934F /* ListProfiles */ = {
 			isa = PBXGroup;
 			children = (
-				D38B92811D9CC41B003E934F /* App Logic */,
-				D38B927F1D9CC3FD003E934F /* Modules */,
+				62D6ABA61D9E9B27003FE54D /* View */,
+				62D6ABA51D9E9B1D003FE54D /* Model */,
+				62D6ABA41D9E9B18003FE54D /* Controller */,
 				D38B927D1D9CC3EC003E934F /* Resources */,
 				D38B927C1D9CC3DE003E934F /* Application */,
 			);
@@ -137,7 +178,6 @@
 		D38B927C1D9CC3DE003E934F /* Application */ = {
 			isa = PBXGroup;
 			children = (
-				D38B92641D9CBDD5003E934F /* LaunchScreen.storyboard */,
 				D38B925B1D9CBDD5003E934F /* AppDelegate.swift */,
 				D38B92671D9CBDD5003E934F /* Info.plist */,
 				D38B927B1D9CC3D1003E934F /* ListProfiles-bridging-header.h */,
@@ -159,54 +199,6 @@
 				627C20C91D9D8D590005D2FE /* Assets.xcassets */,
 			);
 			name = Images;
-			sourceTree = "<group>";
-		};
-		D38B927F1D9CC3FD003E934F /* Modules */ = {
-			isa = PBXGroup;
-			children = (
-				D38B92801D9CC407003E934F /* ListProfiles */,
-			);
-			name = Modules;
-			sourceTree = "<group>";
-		};
-		D38B92801D9CC407003E934F /* ListProfiles */ = {
-			isa = PBXGroup;
-			children = (
-				D38B925D1D9CBDD5003E934F /* ViewController.swift */,
-				D38B925F1D9CBDD5003E934F /* Main.storyboard */,
-				D38B928C1D9CCD03003E934F /* ProfileCellTableViewCell.swift */,
-				6214919C1D9D9F3200F24D41 /* ProfileTableViewController.swift */,
-				627C20C51D9D89C00005D2FE /* EmptyView.xib */,
-				627C20C71D9D89E30005D2FE /* EmptyView.swift */,
-				6214919E1D9DA71400F24D41 /* DetailProfileCollectionViewController.swift */,
-				621491A01D9DC00800F24D41 /* HeaderDetailCollectionReusableView.swift */,
-				621491A21D9DD07C00F24D41 /* ImageProfileCollectionViewCell.swift */,
-			);
-			name = ListProfiles;
-			sourceTree = "<group>";
-		};
-		D38B92811D9CC41B003E934F /* App Logic */ = {
-			isa = PBXGroup;
-			children = (
-				D38B92831D9CC428003E934F /* Service */,
-				D38B92821D9CC424003E934F /* Model */,
-			);
-			name = "App Logic";
-			sourceTree = "<group>";
-		};
-		D38B92821D9CC424003E934F /* Model */ = {
-			isa = PBXGroup;
-			children = (
-				D38B92861D9CC493003E934F /* Profile.swift */,
-			);
-			name = Model;
-			sourceTree = "<group>";
-		};
-		D38B92831D9CC428003E934F /* Service */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			name = Service;
 			sourceTree = "<group>";
 		};
 		DD38ADE11F21EBE10CB5C61A /* Frameworks */ = {

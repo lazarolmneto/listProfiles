@@ -9,7 +9,6 @@
 import UIKit
 import Alamofire
 import AlamofireImage
-import SDWebImage
 
 class ProfileCellTableViewCell: UITableViewCell {
 
@@ -22,6 +21,7 @@ class ProfileCellTableViewCell: UITableViewCell {
     
     var profile : Profile?{
         didSet{
+            //Fill the elemtens of the cell with the values of profile
             fillElements()
         }
     }
@@ -52,18 +52,11 @@ class ProfileCellTableViewCell: UITableViewCell {
         
         imageProfile.image = UIImage()
         
-//        if let imageDownloaded = imageDownloaded{
-//            imageProfile.image = imageDownloaded
-//?        }else{
-            if let imageUrl = profile?.imageUrl{
-                //TODO - Create a service to load the image
-                print(imageUrl)
-//                imageProfile.sd_setImageWithURL(NSURL(string: imageUrl)!)
-                imageProfile.af_setImageWithURL(NSURL(string: imageUrl)!)
-                imageProfile.layer.cornerRadius = imageProfile.frame.size.width / 2
-                imageProfile.clipsToBounds = true
-            }
-//        }
+        if let imageUrl = profile?.imageUrl{
+            imageProfile.af_setImageWithURL(NSURL(string: imageUrl)!)
+            imageProfile.layer.cornerRadius = imageProfile.frame.size.width / 2
+            imageProfile.clipsToBounds = true
+        }
     }
 
 }

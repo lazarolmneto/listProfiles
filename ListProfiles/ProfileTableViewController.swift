@@ -25,6 +25,7 @@ class ProfileTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        //Attribute the delegate(self) to the searchController/
         searchController.searchBar.delegate               = self
         searchController.dimsBackgroundDuringPresentation = false
         definesPresentationContext                        = true
@@ -45,6 +46,7 @@ class ProfileTableViewController: UITableViewController {
     }
 
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        //Verify with the search bar is active
         if searchController.active && searchController.searchBar.text != ""{
             return searchingProfiles.count
         }
@@ -55,6 +57,8 @@ class ProfileTableViewController: UITableViewController {
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("profileCell", forIndexPath: indexPath) as! ProfileCellTableViewCell
         cell.imageProfile.image = UIImage()
+      
+        //Verify with the search bar is active
         if searchController.active && searchController.searchBar.text != ""{
             cell.profile = searchingProfiles[indexPath.row]
         }else{
@@ -69,6 +73,8 @@ class ProfileTableViewController: UITableViewController {
         performSegueWithIdentifier("ShowDetailSegue", sender: self)
     }
     
+    
+    //Call service and fill the array with new profiles.
     func createProfiles(){
         MBProgressHUD.showHUDAddedTo(self.view, animated: true)
         view.userInteractionEnabled = false
@@ -76,6 +82,9 @@ class ProfileTableViewController: UITableViewController {
             self.view.userInteractionEnabled = true
             MBProgressHUD.hideHUDForView(self.view, animated: true)
             if let statusCode = response.response?.statusCode{
+                //Verify with status is success
+                //if success load tableView
+                //if not, add empty view
                 switch statusCode{
                 case 200...204:
                     print(response.result.value)
@@ -105,7 +114,7 @@ class ProfileTableViewController: UITableViewController {
             }
         }
         
-//        tableView.reloadData()
+        //Call animation of tableView
         animateTable()
     }
     
@@ -114,6 +123,7 @@ class ProfileTableViewController: UITableViewController {
         createProfiles()
     }
     
+    //Function to add a Error View, with the possibility that the user try load data again
     func addEmptyView(){
         if let emptyView = NSBundle.mainBundle().loadNibNamed("EmptyView", owner: EmptyView(), options: nil).first as? EmptyView{
             self.emptyView                       = emptyView
@@ -126,6 +136,7 @@ class ProfileTableViewController: UITableViewController {
     }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        //Sending the selected profile to DetailView
         if segue.identifier == "ShowDetailSegue"{
             if let detailColletion = segue.destinationViewController as? DetailProfileCollectionViewController{
                 if let profileSelected = profileSelected{
@@ -163,9 +174,12 @@ class ProfileTableViewController: UITableViewController {
 extension ProfileTableViewController : UISearchBarDelegate{
 
     func searchBar(searchBar: UISearchBar, textDidChange searchText: String) {
+        
+        //Searching for profiles ignoring case
+        
         searchingProfiles = profiles.filter({ (profile) -> Bool in
             if let firstName = profile.firstName, searchText = searchBar.text{
-                return firstName.containsString(searchText)
+                return firstName.lowercaseString.containsString(searchText.lowercaseString)
             }
             return false
         })
@@ -173,22 +187,8 @@ extension ProfileTableViewController : UISearchBarDelegate{
         tableView.reloadData()
     }
     
-    func searchBarTextDidBeginEditing(searchBar: UISearchBar) {
-        
-    }
-    
-    func searchBarTextDidEndEditing(searchBar: UISearchBar) {
-        
-        
-        tableView.reloadData()
-    }
-    
     func searchBarCancelButtonClicked(searchBar: UISearchBar) {
         searchBar.text = ""
         tableView.reloadData()
-    }
-    
-    func searchBarSearchButtonClicked(searchBar: UISearchBar) {
-        
     }
 }
